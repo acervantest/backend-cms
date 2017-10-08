@@ -76,7 +76,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 //UPDATE REFERENCE
-router.post('/modify',(req, res, next)=>{
+router.post('/modify',(req, res, next) => {
     Reference.findByIdAndUpdate( req.body.id, {
               name: req.body.name,
               description: req.body.description
@@ -93,8 +93,8 @@ router.post('/modify',(req, res, next)=>{
           });
 });
 //FIND REFERENCE BY ID
-router.get('/referenceById/:id', function(req, res){
-   Reference.findById({ _id: req.params.id}, function(err, result){
+router.get('/referenceById/:id', (req, res, next) => {
+   Reference.findById({ _id: req.params.id}, (err, result) => {
        if(err){
            return res.status(500).json({
                title: 'An error ocurred',
@@ -105,6 +105,36 @@ router.get('/referenceById/:id', function(req, res){
          success: true,
          obj: result
        });
+   });
+});
+//DELETE REFERENCE
+router.delete('/drop/:id',(req, res, next) => {
+   Reference.findById({ _id: req.params.id}, (err, reference) => {
+       if(err){
+           return res.status(500).json({
+               title: 'An error ocurred',
+               error: err
+           });
+       }
+       if(!reference){
+         return res.status(500).json({
+             title: 'No Reference found',
+             error: { message: 'Reference not found!'}
+         });
+       }
+       reference.remove((err, result) => {
+         if(err){
+             return res.status(500).json({
+                 title: 'An error ocurred',
+                 error: err
+             });
+         }
+         res.status(200).json({
+           success: true,
+           obj: result
+         });
+       });
+
    });
 });
 
