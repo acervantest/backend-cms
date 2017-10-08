@@ -1,0 +1,24 @@
+{
+  "name": "quick-reference",
+  "version": "1.0.0",
+  "description": "quick reference for developers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alejandro cervantes",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "bcryptjs":"*",
+    "cors":"*",
+    "jsonwebtoken":"*",
+    "body-parser":"*",
+    "passport":"^0.3.2",
+    "passport-jwt":"^2.0.0"
+  }
+}
+
+
